@@ -6906,7 +6906,7 @@ var codeToRune = map[int]rune{
 	0x7426: '\u7199',
 }
 
-func ToRune(code int) (rune, error) {
+func Rune(code int) (rune, error) {
 	r, ok := codeToRune[code]
 	if ok {
 		return r, nil

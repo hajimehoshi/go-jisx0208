@@ -40,13 +40,13 @@ func TestConvert(t *testing.T) {
 		input := testCase.input
 		wantedRune := testCase.expectRune
 		wantedError := testCase.expectError
-		gotRune, gotError := ToRune(input)
+		gotRune, gotError := Rune(input)
 		if wantedRune != gotRune {
-			t.Errorf("ToRune(%d) = '%c', want '%c'",
+			t.Errorf("Rune(%d) = '%c', want '%c'",
 				input, gotRune, wantedRune)
 		}
 		if !wantedError && gotError != nil {
-			t.Errorf("ToRune(%d) raises error \"%v\", want nil",
+			t.Errorf("Rune(%d) raises error \"%v\", want nil",
 				input, gotError.Error())
 		}
 	}

@@ -3,7 +3,7 @@
 ## How to use
 
 ```go
-ch, err := jisx0208.ToRune(0x2422)
+ch, err := jisx0208.Rune(0x2422)
 if err != nil {
        panic(err)
 }
