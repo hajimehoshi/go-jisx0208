@@ -9,7 +9,3 @@ if err != nil {
 }
 fmt.Printf("%c\n", ch) // あ
 ```
-
-## License
-
-MIT
