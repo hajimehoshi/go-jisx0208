@@ -9,9 +9,9 @@ if err != nil {
 }
 fmt.Printf("%c\n", ch) // あ
 
-r, err := jisx0208.Rune(ch)
+r, err := jisx0208.Code(ch)
 if err != nil {
        panic(err)
 }
-fmt.Printf("%c\n", r) // 
+fmt.Printf("%X\n", r) // 2422
 ```
