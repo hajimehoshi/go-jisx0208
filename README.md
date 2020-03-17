@@ -8,4 +8,10 @@ if err != nil {
        panic(err)
 }
 fmt.Printf("%c\n", ch) // あ
+
+r, err := jisx0208.Rune(ch)
+if err != nil {
+       panic(err)
+}
+fmt.Printf("%c\n", r) // 
 ```
