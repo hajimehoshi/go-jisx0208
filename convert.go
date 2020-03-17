@@ -6900,10 +6900,36 @@ var codeToRune = map[int]rune{
 	0x7426: '\u7199',
 }
 
+var runeToCode map[rune]int
+
+func init() {
+	runeToCode = initRuneToCode()
+}
+
+func initRuneToCode() map[rune]int {
+	m := map[rune]int{}
+
+	for k, v := range codeToRune {
+		m[v] = k
+	}
+
+	return m
+}
+
+// Rune retrieves the rune corresponding to code
 func Rune(code int) (rune, error) {
 	r, ok := codeToRune[code]
 	if ok {
 		return r, nil
+	}
+	return 0, errors.New("value out of range")
+}
+
+// Code retrieves the code corresponding to rune
+func Code(r rune) (int, error) {
+	c, ok := runeToCode[r]
+	if ok {
+		return c, nil
 	}
 	return 0, errors.New("value out of range")
 }
