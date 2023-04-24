@@ -21,8 +21,8 @@ import (
 
 func TestConvert(t *testing.T) {
 	testCases := []struct {
-		input int
-		expectRune rune
+		input       int
+		expectRune  rune
 		expectError bool
 	}{
 		{0x2121, '　', false},
