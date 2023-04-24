@@ -15,8 +15,9 @@
 package jisx0208_test
 
 import (
-	. "github.com/hajimehoshi/go-jisx0208"
 	"testing"
+
+	. "github.com/hajimehoshi/go-jisx0208"
 )
 
 func TestConvert(t *testing.T) {
@@ -38,6 +39,33 @@ func TestConvert(t *testing.T) {
 		if wantedRune != gotRune {
 			t.Errorf("Rune(%d) = '%c', want '%c'",
 				input, gotRune, wantedRune)
+		}
+		if !wantedError && gotError != nil {
+			t.Errorf("Rune(%d) raises error \"%v\", want nil",
+				input, gotError.Error())
+		}
+	}
+}
+
+func TestRevConvert(t *testing.T) {
+	testCases := []struct {
+		input       rune
+		expectCode  int
+		expectError bool
+	}{
+		{'　', 0x2121, false},
+		{'あ', 0x2422, false},
+		{'一', 0x306C, false},
+		{0xE0000, 0, true}, // Private Use Area in BMP
+	}
+	for _, testCase := range testCases {
+		input := testCase.input
+		wantedCode := testCase.expectCode
+		wantedError := testCase.expectError
+		gotCode, gotError := Code(input)
+		if wantedCode != gotCode {
+			t.Errorf("Code(%c) = '%d', want '%d'",
+				input, gotCode, wantedCode)
 		}
 		if !wantedError && gotError != nil {
 			t.Errorf("Rune(%d) raises error \"%v\", want nil",
